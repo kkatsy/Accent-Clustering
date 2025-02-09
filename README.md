@@ -10,9 +10,13 @@ Welcome to our project page! If you would like to run our embedding/clustering c
 
 ### Results
 
-![From left to right: 2a. Baseline features colored by native language of speaker emphasizing similarity in mean and standard deviation of MFCC embedding between classes. 2b. Baseline features colored by native language of speaker emphasizing variation in length of MFCC embeddings between classes. 2c. Baseline features colored by native language of speaker emphasizing linear relationship between length of MFCC embedding and 'silence' time (number of entries in MFCC embedding less than 5 in absolute magnitude) in recording.](https://github.com/kkatsy/Accent-Clustering/blob/main/baselines_all.png)
+![](https://github.com/kkatsy/Accent-Clustering/blob/main/baselines_all.png)
 
-![3D cluster plots for each pair of embedding scheme and dimensionality reduction technique. Each audio clip is represented as a point that is colored according the native language of the speaker.](https://github.com/kkatsy/Accent-Clustering/blob/main/clusters.png)
+From left to right: 2a. Baseline features colored by native language of speaker emphasizing similarity in mean and standard deviation of MFCC embedding between classes. 2b. Baseline features colored by native language of speaker emphasizing variation in length of MFCC embeddings between classes. 2c. Baseline features colored by native language of speaker emphasizing linear relationship between length of MFCC embedding and 'silence' time (number of entries in MFCC embedding less than 5 in absolute magnitude) in recording.
+
+![](https://github.com/kkatsy/Accent-Clustering/blob/main/clusters.png)
+
+3D cluster plots for each pair of embedding scheme and dimensionality reduction technique. Each audio clip is represented as a point that is colored according the native language of the speaker.
 
 ### Dataset
 
@@ -24,15 +28,15 @@ For our project, we reduced this dataset to include all speakers from the 6 most
 
 ### Embedding Schemes
 
-*Phonemes*: Phonemes were derived from the audio files using Allosaurus - a pretrained universal phone recognizer that converts waveforms into strings of IPA phonemes. The Allosaurus python library is based on the work of (Xinjian Li, 2020).
+**Phonemes**: Phonemes were derived from the audio files using Allosaurus - a pretrained universal phone recognizer that converts waveforms into strings of IPA phonemes. The Allosaurus python library is based on the work of (Xinjian Li, 2020).
 
 The resulting string of IPA phonemes of an audio file is then encoded using a bag-of-words approach: we first obtain a list of all the IPA phonemes that appear within our audio files, and then we proceed to count the number of times each phoneme appears within a recording and use these counts as a feature vector.
 
 We counted 57 unique IPA phonemes, so we created feature vector of length 58 - the unique phonemes plus a symbol representing periods of silence in the recordings, which is generated automatically by Allosaurus.
 
-*MFCCs*: Mel Frequency Cepstral Coefficients (MFCCs) is a widely-used form of data compression in automatic speech recognition that allows audio to be converted to feature embeddings. The mel scale is a logarithmic transformation of a signal's frequency that converts hertz into the **mel** unit. **Mels** are defined in such a way that sounds of equal distance on the Mel Scale are perceived to be of equal distance to humans. The mel-frequency spectrum is a representation of the short-term power spectrum of a sound based on the mel scale. MFCCs are the values that represent the mel-frequency spectrum: each MFCC value represents how similar the mel-frequency spectrum is to cosine shapes created from different frequencies.
+**MFCCs**: Mel Frequency Cepstral Coefficients (MFCCs) is a widely-used form of data compression in automatic speech recognition that allows audio to be converted to feature embeddings. The mel scale is a logarithmic transformation of a signal's frequency that converts hertz into the *mel* unit. *Mels* are defined in such a way that sounds of equal distance on the Mel Scale are perceived to be of equal distance to humans. The mel-frequency spectrum is a representation of the short-term power spectrum of a sound based on the mel scale. MFCCs are the values that represent the mel-frequency spectrum: each MFCC value represents how similar the mel-frequency spectrum is to cosine shapes created from different frequencies.
 
-*Wav2Vec2*: Wav2Vec 2.0 is a transformer-based neural network model created by Facebook that automatically learns discrete speech units and projects recorded speech into a learned embedding space (Alexei Baevski, 2020). We used the pre-trained Wav2Vec2.0 from PyTorch, specifically, the base model pre-trained on 960 hours of unlabeled audio from LibriSpeech dataset.
+**Wav2Vec2**: Wav2Vec 2.0 is a transformer-based neural network model created by Facebook that automatically learns discrete speech units and projects recorded speech into a learned embedding space (Alexei Baevski, 2020). We used the pre-trained Wav2Vec2.0 from PyTorch, specifically, the base model pre-trained on 960 hours of unlabeled audio from LibriSpeech dataset.
 
 The raw waveforms are first passed through a feature encoder and are converted into a dimensionally-reduced sequence of feature vectors, which then go through a feature projection and positional encoding convolution. Finally, they are fed into the context network, which is a transformer encoder, which in our case consisted of 12 transformers.
 
@@ -40,11 +44,11 @@ The result is 12 matrices of feature outputs per one waveform audio, correspondi
 
 ### Clustering methods
 
-*PCA*: Principal component analysis, or PCA, is a popular dimensionality reduction technique that linearly transforms data into a new coordinate system in which the variation in the data can be described with fewer dimensions. We believed that PCA would be a good method to identify accents that are strongly dissimilar even though it might not be able to capture the more subtle differences between accents due to its linearity.
+**PCA**: Principal component analysis, or PCA, is a popular dimensionality reduction technique that linearly transforms data into a new coordinate system in which the variation in the data can be described with fewer dimensions. We believed that PCA would be a good method to identify accents that are strongly dissimilar even though it might not be able to capture the more subtle differences between accents due to its linearity.
 
-*t-SNE*: The t-distributed stochastic neighbor embedding (t-SNE) is a nonlinear dimensionality reduction technique for embedding high dimensional data in a lower dimensional latent space. The main advantage of t-SNE is its ability to preserve local structure, where points that are close to one another in high-dimensional space tend to remain close in the low-dimensional space.
+**t-SNE**: The t-distributed stochastic neighbor embedding (t-SNE) is a nonlinear dimensionality reduction technique for embedding high dimensional data in a lower dimensional latent space. The main advantage of t-SNE is its ability to preserve local structure, where points that are close to one another in high-dimensional space tend to remain close in the low-dimensional space.
 
-*UMAP*: Uniform Manifold Approximation and Projection (UMAP) works similarly to t-SNE in that it uses a graph layout to approximate data into a lower dimensional space. However, UMAP tends to be more efficient than t-SNE and also can be more effective by doing a better job at maintaining some of the global structure of the higher dimension space
+**UMAP**: Uniform Manifold Approximation and Projection (UMAP) works similarly to t-SNE in that it uses a graph layout to approximate data into a lower dimensional space. However, UMAP tends to be more efficient than t-SNE and also can be more effective by doing a better job at maintaining some of the global structure of the higher dimension space.
 
 ### Instructions
 
