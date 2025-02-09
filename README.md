@@ -4,15 +4,15 @@
 ### Authors: Katya Katsy, Mason Kellogg, Morgan Lafferty, Sean Lindstrom
 
 *Project report*: [Assessing English accent similarity using various audio-to-embedding
-schemes and dimensionality reduction methods](https://github.com/kkatsy/Accent-Clustering/main/finalreport_2023.pdf)
+schemes and dimensionality reduction methods](https://github.com/kkatsy/Accent-Clustering/blob/main/finalreport_2023.pdf)
 
 Welcome to our project page! If you would like to run our embedding/clustering code yourself please follow the instructions below.
 
 ### Results
 
-![alt text](https://github.com/kkatsy/Accent-Clustering/main/baselines_all.png)
+![From left to right: 2a. Baseline features colored by native language of speaker emphasizing similarity in mean and standard deviation of MFCC embedding between classes. 2b. Baseline features colored by native language of speaker emphasizing variation in length of MFCC embeddings between classes. 2c. Baseline features colored by native language of speaker emphasizing linear relationship between length of MFCC embedding and 'silence' time (number of entries in MFCC embedding less than 5 in absolute magnitude) in recording.](https://github.com/kkatsy/Accent-Clustering/blob/main/baselines_all.png)
 
-![alt text](https://github.com/kkatsy/Accent-Clustering/main/clusters.png)
+![3D cluster plots for each pair of embedding scheme and dimensionality reduction technique. Each audio clip is represented as a point that is colored according the native language of the speaker.](https://github.com/kkatsy/Accent-Clustering/blob/main/clusters.png)
 
 ### Dataset
 
